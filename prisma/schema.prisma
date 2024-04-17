@@ -19,7 +19,6 @@ model User {
   updateAt DateTime @updatedAt
 }
 
-
 model availability {
  id      String   @id @default(auto()) @map("_id") @db.ObjectId
   startHour   String   

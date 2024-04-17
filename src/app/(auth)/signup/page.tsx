@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import SignupForm from '../../../components/signUpForm/SignupForm'
+import SignupForm from '../../../(components)/signUpForm/SignupForm'
 import { logo } from '../../../../public/images'
 
 export default function Signup() {

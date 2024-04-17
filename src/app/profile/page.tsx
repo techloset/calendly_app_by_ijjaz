@@ -9,7 +9,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import DefaultLayout from '@/components/Layouts/DefaultLayout'
+import DefaultLayout from '@/(components)/Layouts/DefaultLayout'
 import { authOptions } from '@/constants/authProvider'
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'

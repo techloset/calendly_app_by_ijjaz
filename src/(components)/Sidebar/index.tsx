@@ -1,10 +1,9 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import SidebarLinkGroup from "./SidebarLinkGroup";
+// import SidebarLinkGroup from "./SidebarLinkGroup";
 import { adminCenter, analytics, arrowClose, clock, events, logo, plus } from "../../../public/images";
 
 interface SidebarProps {
@@ -102,7 +101,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           {/* <!-- Others Group --> */}
           <div>
             <Link
-            href={"#"}
+              href={"#"}
               className="flex items-center justify-center bg-primary text-white-default w-full rounded-[40px] px-[11px] py-[17px] my-[10px] text-center"
             >
               <Image
@@ -156,7 +155,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 {/* <!-- Menu Item Chart --> */}
                 <li>
                   <Link
-                    href="/"
+                    href="/availability"
                     className={`group relative flex items-center gap-5 rounded-lg px-4 py-2 font-bold text-sm text-black duration-300 ease-in-out hover:bg-gray hover:text-primary ${pathname.includes("availability") && "bg-gray "
                       }`}
                   >

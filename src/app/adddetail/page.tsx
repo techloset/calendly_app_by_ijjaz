@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { arrowLeft, calender, calendly, clock, world } from '../../../public/images'
 import Link from 'next/link'
-import MeetingConfirm from '../../components/meetingConfirm/MeetingConfirm'
+import MeetingConfirm from '../../(components)/meetingConfirm/MeetingConfirm'
 const initialState = {
   email: '',
   fullName: '',
