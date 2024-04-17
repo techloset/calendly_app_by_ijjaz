@@ -8,8 +8,15 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-
-interface FormData {
+import PrimaryBtn from '../button/PrimaryBtn';
+// import Input from '../formInputs/Input';
+type FieldValues = {
+    email: string;
+    fullname: string;
+    username: string;
+    password: string;
+};
+export interface FormData {
     email: string;
     fullname: string;
     username: string;
@@ -19,11 +26,11 @@ interface FormData {
 export default function SignupForm() {
     const [loading, setisLoading] = useState(false)
     const router = useRouter()
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<FieldValues>({
         resolver: zodResolver(userSchema),
     });
 
-    const onSubmit = async (value: FormData) => {
+    const onSubmit = async (value: FieldValues) => {
         setisLoading(true)
         // Perform form submission logic here (e.g., sending data to server)
         await axios.post(`${URL}/api/user`, {
@@ -48,7 +55,7 @@ export default function SignupForm() {
     };
 
     return (
-        <form className='px-[33px] mb-[33px] py-[33px] border border-borderClr-1 shadow-2 rounded-md w-[95%] sm:w-[440px] ' onSubmit={handleSubmit(onSubmit)}>
+        <form className='px-[33px] mb-[33px] py-[33px] border border-borderClr-1 shadow-2 rounded-md w-[95%] sm:w-[440px] ' >
             <div className='mb-[12px]'>
                 <label htmlFor="email" className='text-black font-bold text-sm'>Enter your email to get started</label>
                 <input className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]' style={{ outline: "none" }} {...register("email",)} placeholder='test@gmail.com' type='email' />
@@ -58,6 +65,17 @@ export default function SignupForm() {
                 <label className='text-black font-bold text-sm' htmlFor="fullname">Enter your full name</label>
                 <input className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]' style={{ outline: "none" }} {...register("fullname",)} placeholder='fullname' type='text' />
                 {errors.fullname && <p className='text-danger text-[10px] font-bold'>{errors.fullname.message}</p>}
+                {/* <Input
+                    label="Enter your fullname"
+                    register={register}
+                    placeholder="fullname"
+                    type="text"
+                    fieldName="fullname"
+                    errors={errors}
+                    message="Error message for fullname"
+                /> */}
+
+
             </div>
             <div className='mb-[12px]'>
                 <label className='text-black font-bold text-sm' htmlFor="userName">Enter your username</label>
@@ -78,15 +96,9 @@ export default function SignupForm() {
             <p className='mt-[27px] mb-[12px] font-normal text-[12px] text-center'>By creating a Calendly account, you agree to <span className='text-primary'>Calendly's Terms</span> and <span className='text-primary '>Privacy Policy</span></p>
 
             <div className="text-center">
-                {loading ?
-                    <button type="button" className=" text-white-default bg-primary rounded-[40px] px-[17px] py-[11px]" disabled>
-                        loading...
-                    </button> 
-                    :<button type="submit" className='  text-white-default bg-primary rounded-[40px] px-[17px] py-[11px]  '>Sign Up</button>
-
-                }
+                <PrimaryBtn loading={loading} onClick={handleSubmit(onSubmit)} label="SignUp" />
             </div>
-            
+
             <Link href={"/signin"} ><p className='mt-[27px]  font-normal text-[12px] text-center'>If already have an account<span className='text-primary'>SignIn</span></p></Link>
         </form>
     );
@@ -101,22 +113,3 @@ export default function SignupForm() {
 
 
 
-// const handleSubmit = (e: any) => {
-//     e.preventDefault();
-
-//     axios.post(`${URL}/api/user`, {
-//         email: state.email,
-//         username: state.userName,
-//         password: state.userPassword,
-//     })
-//         .then(function (response) {
-//             console.log(response);
-//             toast.success(`${response.data.message}`)
-//             router.push("/signin")
-//             setstate(initialState)
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//             toast.error(`${error.response.data.message}`)
-//         });
-// }

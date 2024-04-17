@@ -10,13 +10,12 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 export default function SelectTime() {
   const [selectedTime, setSelectedTime] = useState<string>('');
-  const [hoverClass, sethoverClass] = useState<string>('');
- 
+  console.log("🚀 ~ SelectTime ~ selectedTime:", selectedTime)
   const [value, onChange] = useState<Value>(new Date());
+  console.log("🚀 ~ SelectTime ~ value:", value)
   const allowedDays: string[] = ["Sunday", "Friday"];
   const handleButtonClick = (time: string) => {
     setSelectedTime(time);
-    console.log("🚀 ~ SelectTime ~ selectedTime:", selectedTime)
   };
   const tileDisabled: TileDisabledFunc = ({ date, view }) => {
     // Check if the date is in the past
