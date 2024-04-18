@@ -9,6 +9,7 @@ import axios from 'axios'
 import { URL } from '@/constants/SiteUrl'
 import { getServerSession } from 'next-auth'
 import { getSession } from 'next-auth/react'
+import PrimaryBtn from '@/(components)/button/PrimaryBtn'
 
 export const daysName: string[] = ["Sundays", "Mondays", "Tuesdays", "Wednesdays", "Thrusdays", "Fridays", "Saturdays"]
 type hoursType = {
@@ -158,14 +159,7 @@ export default function AddAvailability() {
         <Image src={progressbar} alt="..." className='w-[100px] h-[10px]' />
         <div className='flex justify-end items-center gap-1'>
           <button className='text-black bg-white border-none px-[17px] py-[11px]'>Set up later</button>
-          {loading ?
-            <button type="button" className=" text-white-default bg-primary rounded-[40px] px-[17px] py-[11px]" disabled>
-              loading...
-            </button>
-            : <button onClick={handelSubmit} className='text-white-default bg-primary rounded-[40px] px-[17px] py-[11px]'>Set Now</button>
-
-          }
-
+          <PrimaryBtn loading={loading} onClick={handelSubmit} label="Set Now" />
         </div>
       </div>
     </div>

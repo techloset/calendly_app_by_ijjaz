@@ -15,6 +15,6 @@ export default withAuth(
 export const config = {
   matcher: [
     "/", "/profile", "/adddetail", "/availability",
-    "/selecttime", "/settings","/addavailability" 
+    "/selecttime", "/settings", "/addavailability"
   ]
 }

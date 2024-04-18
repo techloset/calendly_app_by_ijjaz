@@ -1,30 +1,18 @@
-import React from 'react';
-import { UseFormRegister, FieldValues, FieldErrors } from 'react-hook-form';
+import React from 'react'
+type InputProps = {
+  label: string,
+  type: string,
+  name: string,
+  value: string,
+  onChange:(e: any)=>void,
+  placeholder:string,
 
-interface InputProps {
-  label: string;
-  register: UseFormRegister<FieldValues>;
-  placeholder: string;
-  type: string;
-  fieldName: keyof FieldValues;
-  errors: FieldErrors<FieldValues>;
-  message: string;
 }
-
-const Input: React.FC<InputProps> = ({ label, register, placeholder, type, fieldName, errors, message }) => {
+export default function Input({ label, type, name, value, onChange, placeholder }: InputProps) {
   return (
     <>
-      <label className='text-black font-bold text-sm' htmlFor={String(fieldName)}>{label}</label>
-      <input
-        className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]'
-        style={{ outline: "none" }}
-        {...register(fieldName)}
-        placeholder={placeholder}
-        type={type}
-      />
-      {errors[fieldName] && <p className='text-danger text-[10px] font-bold'>{message}</p>}
+      <label htmlFor={name} className='text-black font-extrabold text-sm'>{label} </label>
+      <input className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px] focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1' style={{ outline: "none" }} type={type} name={name} value={value} onChange={(e) => onChange(e)} placeholder={placeholder} />
     </>
-  );
+  )
 }
-
-export default Input;

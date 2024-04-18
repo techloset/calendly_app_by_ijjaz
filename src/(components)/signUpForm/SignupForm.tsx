@@ -1,7 +1,7 @@
 "use client"
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchema } from '@/constants/ValidationSchema/FormSchema'; // Update the path as needed
+import { userSchema } from '@/constants/ValidationSchema/FormSchema'; 
 import Link from 'next/link';
 import { URL } from '@/constants/SiteUrl'
 import axios from 'axios'
@@ -9,7 +9,6 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import PrimaryBtn from '../button/PrimaryBtn';
-// import Input from '../formInputs/Input';
 type FieldValues = {
     email: string;
     fullname: string;
@@ -96,7 +95,7 @@ export default function SignupForm() {
             <p className='mt-[27px] mb-[12px] font-normal text-[12px] text-center'>By creating a Calendly account, you agree to <span className='text-primary'>Calendly's Terms</span> and <span className='text-primary '>Privacy Policy</span></p>
 
             <div className="text-center">
-                <PrimaryBtn loading={loading} onClick={handleSubmit(onSubmit)} label="SignUp" />
+                <PrimaryBtn loading={loading} onClick={handleSubmit(onSubmit)} label="Sign Up" />
             </div>
 
             <Link href={"/signin"} ><p className='mt-[27px]  font-normal text-[12px] text-center'>If already have an account<span className='text-primary'>SignIn</span></p></Link>

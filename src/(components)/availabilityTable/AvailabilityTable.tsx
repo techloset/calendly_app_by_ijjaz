@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
 const event = ["Events", "Availability"]
-export default function AvailabilityTable() {
+type Props ={
+  name:string,
+  path:string,
+}
+export default function AvailabilityTable({name,path}:Props) {
   return (
 
     <section className="mx-auto w-full max-w-7xl px-4 py-4">
@@ -9,7 +13,7 @@ export default function AvailabilityTable() {
 
         <div>
           <div className='w-full'>
-            <Link href="/addavailability" className="appearance-none   border-gray-300 py-2 px-3  border border-borderClr-2 rounded-lg text-black font-normal text-[16px] focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1">Add Availability
+            <Link href={path} className="appearance-none   border-gray-300 py-2 px-3  border border-borderClr-2 rounded-lg text-black font-normal text-[16px] focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1">{name}
             </Link>
           </div>
         </div>

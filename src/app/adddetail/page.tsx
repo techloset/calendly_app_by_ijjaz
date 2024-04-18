@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { arrowLeft, calender, calendly, clock, world } from '../../../public/images'
 import Link from 'next/link'
 import MeetingConfirm from '../../(components)/meetingConfirm/MeetingConfirm'
+import PrimaryBtn from '@/(components)/button/PrimaryBtn'
 const initialState = {
   email: '',
   fullName: '',
@@ -12,15 +13,17 @@ const initialState = {
 
 export default function adddetail() {
   const [confirm, setisConfirm] = useState(false)
+  const [loading, setisLoading] = useState(false)
   const [state, setstate] = useState(initialState)
   const handelChange = (e: any) => {
     setstate(s => ({ ...s, [e.target.name]: e.target.value }))
   }
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    setisLoading(true)
     console.log("🚀 ~ SignupForm ~ state:", state)
     setstate(initialState)
     setisConfirm(true)
+    setisLoading(false)
   }
   return (
 
@@ -41,10 +44,10 @@ export default function adddetail() {
               <p className='text-black font-bold text-[17px] mt-7 mb-5 ml-8 '>
                 Enter Details
               </p>
-              <form className='px-[33px] py-[33px]  w-[95%] sm:w-[440px] ' onSubmit={handleSubmit}>
+              <form className='px-[33px] py-[33px]  w-[95%] sm:w-[440px] ' >
                 <div className='mb-[12px]'>
                   <label className='text-black font-bold text-sm' htmlFor="fullName">Name*</label>
-                  <input type="text" name='fullName' value={state.fullName} className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]' style={{ outline: "none" }} onChange={(e) => handelChange(e)} placeholder='' />
+                  <input  className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]' style={{ outline: "none" }} type="text" name='fullName' value={state.fullName} onChange={(e) => handelChange(e)} placeholder='' />
                 </div>
                 <div className='mb-[12px]'>
                   <label htmlFor="email" className='text-black font-bold text-sm'>Email*</label>
@@ -55,7 +58,7 @@ export default function adddetail() {
                   <textarea  name='description' value={state.description} className='px-[15px] py-[14px] mt-[8px] w-full border border-borderClr-2 rounded-lg text-black font-normal text-[16px]' style={{ outline: "none" }} onChange={(e) => handelChange(e)} placeholder='' />
                 </div>
                 <p className='font-normal  text-[14px] mb-[14px]'>By proceeding. you confirm that you have read and agree to <span className='text-primary'>Calendly Terms of Use and Privacy Notice.</span> </p>
-              <button onClick={handleSubmit} className='text-white-default bg-primary rounded-[40px] px-[17px] py-[11px]'>Schedule Event</button>
+              <PrimaryBtn loading={loading} onClick={handleSubmit} label="Set Now" />
               </form>
             </div>
           </div>

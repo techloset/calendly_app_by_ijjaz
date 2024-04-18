@@ -7,7 +7,7 @@ export default function Availability() {
   return (
     <DefaultLayout>
         <h1 className="font-bold text-[25px]">Availabality</h1>
-        <AvailabilityTable/>
+        <AvailabilityTable name={"Add Availability"} path='/addavailability' />
       </DefaultLayout>
   )
 }

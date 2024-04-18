@@ -5,7 +5,6 @@ import timeSlice from './slices/timeSlice';
 const store = configureStore({
   reducer: {
     time: timeSlice,
-    // Add more reducers here if needed
   },
 });
 
